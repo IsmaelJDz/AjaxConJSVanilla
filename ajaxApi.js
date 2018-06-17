@@ -3,6 +3,7 @@
 	const starwars = d.querySelector('#starwars')
 	  pagination = d.querySelector('#pagination')
 
+<<<<<<< HEAD
 	  function loadCharacters(startList){
   		let starwarsInfo,
   			starwarsTemplate = ''
@@ -45,5 +46,36 @@
 			xhr.send()
 		}
 	})
+=======
+	xhr.open('GET', 'http://swapi.co/api/people/', true)
+	xhr.addEventListener('load', e => {
+		let starwarsInfo,
+			starwarsTemplate = ''
+		if (xhr.status >= 200 && xhr.status < 400) {
+			starwarsInfo = json.parse(xhr.responseText)
+			c(starwarsInfo)
+
+			// starwarsInfo['movies'].forEach(movie =>{
+			// 	starwarsTemplate += `
+			// 		<article>
+			// 		  <h2>${movie.title}</h2>
+			// 		  <p><b>${movie.year}</b></p>
+			// 		  <p><i>${movie.genres}</i></p>
+			// 		  <img src="${movie.poster}">
+			// 		</article>
+			// 	`
+			// })
+		}
+		else
+		{
+			starwarsTemplate = `<b>El servidor No responde. Error No ${xhr.status}:
+			<mark>${xhr.statusText}</mark></b>
+			`
+		}
+
+		starwars.innerHTML = starwarsTemplate
+	})
+	xhr.send()
+>>>>>>> 4c75f87c96e921e53a36545f01f3805a7493a88c
 
 })(console.log, document, new XMLHttpRequest(), JSON)
